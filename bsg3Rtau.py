@@ -1,4 +1,8 @@
 #/usr/bin/env python
+'''To have the program working you should install the following
+dependencies in debian/ubuntu:
+apt-get install python-scipy python-mpmath
+'''
 from __future__ import division
 import numpy as np
 global alpha,mc,mb,mt,mw,mz,mu,muw,alphasz,z,lambda1,lambda2
@@ -56,7 +60,6 @@ c7ef=lambda x,y,U1,U2:eta**(16/23)*c70(x,y,U1,U2)+8/3*(eta**(14/23)-eta**(16/23)
 #(* the branching is by def *)
 #(* ((Vts*Vtb)/Vcb)**2 is CKM factor included numerically and the semileptonic ratio from pdg *)
 BrLO=lambda mH,U1,U2:10.08/100*0.971*(6*alpha)/(Pi*fz)*(c7ef(xtw,yth(mH),U1,U2))**2;
-print BrLO(150, 0, 0)
 
 
 #(* NLO *)
@@ -137,11 +140,13 @@ Delta=lambda mH,U1,U2:1/mb**2*(lambda1*0.5-4.5*lambda2)*c7ef(xtw,yth(mH),U1,U2)*
 
 brNLO=lambda mH,U1,U2:(10.08/100*0.971*(6*alpha)/(Pi*fz*kz )*(Abs(bd(mH,U1,U2))**2+ A(mH,U1,U2)+ Delta(mH,U1,U2))).real;
 
-print brNLO(150,0,0)
-other='''
 
-
-N(brNLO(150,0,0))
-'''
+if __name__ == '__main__':
+    test=True
+    if test:
+        print "brLO=0.00026123=?",BrLO(150, 0, 0)
+        print "brNLO=",brNLO(150,0,0)
+        print "brNLO=0.000326466=?",brNLO(150,0.1,0.2)
+        
 
 
